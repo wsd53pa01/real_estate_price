@@ -1,3 +1,5 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +7,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RealEstatePrice.Autofac;
 
 namespace real_estate_price
 {
@@ -26,6 +29,12 @@ namespace real_estate_price
             {
                 configuration.RootPath = "../RealEstatePrice.ClientApp/dist";
             });
+        }
+
+        // autofac configure container
+        public void ConfigureContainer(ContainerBuilder builder) 
+        {
+            builder.LoadContainer("RealEstatePrice.*.dll");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
