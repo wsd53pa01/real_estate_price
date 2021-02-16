@@ -31,9 +31,7 @@ namespace RealEstatePrice.Autofac
             builder.RegisterType<HttpContextAccessor>()
                 .As<IHttpContextAccessor>()
                 .SingleInstance();
-
             Type baseType = typeof(IModule);
-
             foreach (Assembly assembly in assemblies)
                 builder.RegisterAssemblyTypes(assembly)
                     .Where(t => baseType.IsAssignableFrom(t) && t != baseType)

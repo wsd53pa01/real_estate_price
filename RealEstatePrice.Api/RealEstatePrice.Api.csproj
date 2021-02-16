@@ -27,8 +27,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RealEstatePrice.Core\RealEstatePrice.Core.csproj" />
-    <ProjectReference Include="..\RealEstatePrice.Services\RealEstatePrice.Services.csproj" />
-    <ProjectReference Include="..\RealEstatePrice.Repositories\RealEstatePrice.Repositories.csproj" />
+    <ProjectReference Include="..\RealEstatePrice.Service\RealEstatePrice.Service.csproj" />
+    <ProjectReference Include="..\RealEstatePrice.Repository\RealEstatePrice.Repository.csproj" />
     <ProjectReference Include="..\RealEstatePrice.Autofac\RealEstatePrice.Autofac.csproj" />
   </ItemGroup>
 

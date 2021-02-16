@@ -1,3 +1,4 @@
+using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,15 @@ namespace real_estate_price
         // autofac configure container
         public void ConfigureContainer(ContainerBuilder builder) 
         {
+            // var assemblies = new Assembly[]
+            // {
+            //     Assembly.Load("RealEstatePrice.Api"),
+            //     Assembly.Load("RealEstatePrice.Services"),
+            // };
+            // builder.RegisterAssemblyTypes(assemblies)
+            //     .Where(x => (x.Name.EndsWith("Service") || x.Name.EndsWith("Repository")) && !x.IsInterface)
+            //     .AsImplementedInterfaces()
+            //     .InstancePerLifetimeScope();
             builder.LoadContainer("RealEstatePrice.*.dll");
         }
 
