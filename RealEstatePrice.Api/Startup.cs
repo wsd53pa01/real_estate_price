@@ -58,6 +58,7 @@ namespace real_estate_price
                 app.UseHsts();
             }
 
+            app.UseMiddleware<LogMiddleware>();
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
