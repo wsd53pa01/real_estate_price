@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -8,6 +10,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using RealEstatePrice.Api.Middlewares;
 using RealEstatePrice.Autofac;
 using RealEstatePrice.Core;
@@ -36,6 +39,15 @@ namespace real_estate_price
              // Inject appsettings:ConnectionStrings
             IConfigurationSection connectionStrings = Configuration.GetSection("ConnectionStrings");
             services.Configure<ConnectionStrings>(connectionStrings);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Real Estate Price API", Version = "v1"});
+                // Set the comments path for the Swagger JSON and UI.
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // autofac configure container
@@ -75,6 +87,13 @@ namespace real_estate_price
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Real Estate Price V1");
+                c.RoutePrefix = string.Empty;
             });
 
             app.UseSpa(spa =>
