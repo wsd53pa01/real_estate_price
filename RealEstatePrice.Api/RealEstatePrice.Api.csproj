@@ -13,6 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.2" />
   </ItemGroup>
 
@@ -21,6 +23,13 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RealEstatePrice.Core\RealEstatePrice.Core.csproj" />
+    <ProjectReference Include="..\RealEstatePrice.Service\RealEstatePrice.Service.csproj" />
+    <ProjectReference Include="..\RealEstatePrice.Repository\RealEstatePrice.Repository.csproj" />
+    <ProjectReference Include="..\RealEstatePrice.Autofac\RealEstatePrice.Autofac.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
