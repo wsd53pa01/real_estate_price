@@ -7,7 +7,7 @@ namespace RealEstatePrice.Core.Wrappers
         public Response()
         {
         }
-        public Response(T data, string message = null, StatusCodeOptions statusCode = StatusCodeOptions.S001)
+        public Response(T data, string message = null, string statusCode = nameof(StatusCodeOptions.S001))
         {
             Succeeded = true;
             Message = message;
@@ -18,11 +18,11 @@ namespace RealEstatePrice.Core.Wrappers
         {
             Succeeded = false;
             Message = message;
-            StatusCode = StatusCodeOptions.E001;
+            StatusCode = nameof(StatusCodeOptions.S001);
         }
         public bool Succeeded { get; set; }
         public string Message { get; set; }
-        public StatusCodeOptions StatusCode { get; set; }
+        public string StatusCode { get; set; }
         public T Data { get; set; }
     }
 }

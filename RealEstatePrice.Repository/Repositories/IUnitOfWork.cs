@@ -1,11 +1,14 @@
 using System;
 using System.Data;
 using RealEstatePrice.Autofac;
+using RealEstatePrice.Repository.Models;
 
 namespace RealEstatePrice.Repository.Repositories
 {
     public interface IUnitOfWork : IModule, IDisposable
     {
+        IGenericRepository<Users> UsersRepository { get; }
+
         /// <summary>
         ///     Database Connection
         /// </summary>

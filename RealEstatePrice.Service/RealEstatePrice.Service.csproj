@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RealEstatePrice.Core\RealEstatePrice.Core.csproj" />
     <ProjectReference Include="..\RealEstatePrice.Autofac\RealEstatePrice.Autofac.csproj" />
+    <ProjectReference Include="..\RealEstatePrice.Repository\RealEstatePrice.Repository.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -7,7 +7,7 @@ namespace RealEstatePrice.Repository.Repositories
     /// </summary>
     public class UnitOfWorkManager : IUnitOfWorkManager
     {
-        private readonly ISqlLite _realEstatePrice;
+        private readonly ISqlite _realEstatePrice;
         private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
@@ -15,7 +15,7 @@ namespace RealEstatePrice.Repository.Repositories
         /// </summary>
         /// <param name="postgresql"></param>
         /// <param name="unitOfWork"></param>
-        public UnitOfWorkManager(ISqlLite realEstatePrice,
+        public UnitOfWorkManager(ISqlite realEstatePrice,
             IUnitOfWork unitOfWork)
         {
             _realEstatePrice = realEstatePrice;

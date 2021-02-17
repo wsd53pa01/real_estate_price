@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RealEstatePrice.Autofac;
 using RealEstatePrice.Core.DTOs.User;
@@ -7,6 +8,9 @@ namespace RealEstatePrice.Service.Interfaces
 {
     public interface IUserService : IModule
     {
-        Task<Response<UserResponse>> GetUserAsync();
+        /// <summary>
+        /// 取得 User 
+        /// </summary>
+        Task<Response<List<UserResponse>>> GetUserAsync();
     }
 }

@@ -1,11 +1,15 @@
 using System;
 using System.Data;
 using Dapper;
+using RealEstatePrice.Repository.Models;
 
 namespace RealEstatePrice.Repository.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
+        public IGenericRepository<Users> UsersRepository
+            => new GenericRepository<Users>(DbConnection);
+
         public IGenericRepository<dynamic> Repository
             => new GenericRepository<dynamic>(DbConnection);
             
@@ -49,7 +53,7 @@ namespace RealEstatePrice.Repository.Repositories
         {
             if (DbConnection != null)
             {
-                DbConnection.Close();
+                // DbConnection.Close();
                 if (!disposedValue)
                 {
                     if (disposing) DbConnection.Dispose();

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RealEstatePrice.Autofac;
+using RealEstatePrice.Core;
 
 namespace real_estate_price
 {
@@ -30,20 +31,15 @@ namespace real_estate_price
             {
                 configuration.RootPath = "../RealEstatePrice.ClientApp/dist";
             });
+
+             // Inject appsettings:ConnectionStrings
+            IConfigurationSection connectionStrings = Configuration.GetSection("ConnectionStrings");
+            services.Configure<ConnectionStrings>(connectionStrings);
         }
 
         // autofac configure container
         public void ConfigureContainer(ContainerBuilder builder) 
         {
-            // var assemblies = new Assembly[]
-            // {
-            //     Assembly.Load("RealEstatePrice.Api"),
-            //     Assembly.Load("RealEstatePrice.Services"),
-            // };
-            // builder.RegisterAssemblyTypes(assemblies)
-            //     .Where(x => (x.Name.EndsWith("Service") || x.Name.EndsWith("Repository")) && !x.IsInterface)
-            //     .AsImplementedInterfaces()
-            //     .InstancePerLifetimeScope();
             builder.LoadContainer("RealEstatePrice.*.dll");
         }
 

@@ -15,6 +15,9 @@ namespace RealEstatePrice.Api.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// 取得 User
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {

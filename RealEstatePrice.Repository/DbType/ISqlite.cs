@@ -2,7 +2,7 @@ using RealEstatePrice.Autofac;
 
 namespace RealEstatePrice.Repository.DbType
 {
-    public interface ISqlLite : IDbType, IModule
+    public interface ISqlite : IDbType, IModule
     {
         
     }

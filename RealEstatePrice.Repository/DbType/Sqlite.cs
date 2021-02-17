@@ -5,11 +5,11 @@ using RealEstatePrice.Core;
 
 namespace RealEstatePrice.Repository.DbType
 {
-    public class SqlLite : ISqlLite
+    public class Sqlite : ISqlite
     {
         private readonly ConnectionStrings _connectionString;
 
-        public SqlLite(IOptions<ConnectionStrings> options)
+        public Sqlite(IOptions<ConnectionStrings> options)
         {
             _connectionString = options.Value;
             
