@@ -18,7 +18,7 @@ namespace RealEstatePrice.Core.Wrappers
         {
             Succeeded = false;
             Message = message;
-            StatusCode = nameof(StatusCodeOptions.S001);
+            StatusCode = nameof(StatusCodeOptions.E001);
         }
         public bool Succeeded { get; set; }
         public string Message { get; set; }

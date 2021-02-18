@@ -3,6 +3,8 @@ using System.IO;
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,9 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using RealEstatePrice.Api.Filters;
 using RealEstatePrice.Api.Middlewares;
 using RealEstatePrice.Autofac;
 using RealEstatePrice.Core;
+using RealEstatePrice.Service.Interfaces;
 
 namespace real_estate_price
 {
@@ -48,6 +52,13 @@ namespace real_estate_price
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            // add hangfire
+            services.AddHangfire(config =>
+                    config.UseSimpleAssemblyNameTypeSerializer()
+                          .UseRecommendedSerializerSettings()
+                          .UseMemoryStorage());
+
         }
 
         // autofac configure container
@@ -89,6 +100,12 @@ namespace real_estate_price
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
+            app.UseHangfireServer();
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            {
+                Authorization = new[] {new HangfireAuthorizationFilter()}
+            });
+
             app.UseSwagger();
             app.UseSwaggerUI(c => 
             {
@@ -108,6 +125,11 @@ namespace real_estate_price
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            RecurringJob.AddOrUpdate<IRealEstatePriceService>("Job：每天早上6點抓取內政部不動產交易 Open Data",
+                x => x.FetchRealEstatePrice(),
+                "0 6 * * *",
+                TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time"));
         }
     }
 }

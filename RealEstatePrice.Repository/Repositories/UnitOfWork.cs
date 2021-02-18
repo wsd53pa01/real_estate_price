@@ -10,6 +10,12 @@ namespace RealEstatePrice.Repository.Repositories
         public IGenericRepository<Users> UsersRepository
             => new GenericRepository<Users>(DbConnection);
 
+        public IGenericRepository<Prices> PricesRepository
+            => new GenericRepository<Prices>(DbConnection);    
+
+        public IGenericRepository<Optionals> OptionalsRepository
+            => new GenericRepository<Optionals>(DbConnection);    
+
         public IGenericRepository<dynamic> Repository
             => new GenericRepository<dynamic>(DbConnection);
             

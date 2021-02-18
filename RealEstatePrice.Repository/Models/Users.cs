@@ -2,6 +2,7 @@ using Dapper;
 
 namespace RealEstatePrice.Repository.Models
 {
+    [Table("Users")]
     public class Users
     {
         /// <summary>

@@ -8,6 +8,9 @@ namespace RealEstatePrice.Repository.Repositories
     public interface IUnitOfWork : IModule, IDisposable
     {
         IGenericRepository<Users> UsersRepository { get; }
+        IGenericRepository<Prices> PricesRepository { get; }
+        
+        IGenericRepository<Optionals> OptionalsRepository { get; }
 
         /// <summary>
         ///     Database Connection
