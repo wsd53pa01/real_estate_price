@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace RealEstatePrice.Core.Wrappers
@@ -7,12 +8,12 @@ namespace RealEstatePrice.Core.Wrappers
         public Response()
         {
         }
-        public Response(T data, string message = null, string statusCode = nameof(StatusCodeOptions.S001))
+        public Response(T data, string message = null, StatusCodeOptions statusCode = StatusCodeOptions.S001, bool succeeded = true)
         {
-            Succeeded = true;
+            Succeeded = succeeded;
             Message = message;
             Data = data;
-            StatusCode = statusCode;
+            StatusCode = Enum.GetName(typeof(StatusCodeOptions), statusCode);
         }
         public Response(string message)
         {
