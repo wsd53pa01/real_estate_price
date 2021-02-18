@@ -24,5 +24,6 @@ namespace RealEstatePrice.Api.Controllers
         {
             return Ok(await _realEstatePrice.GetRealEstatePrice(request));
         }
+
     }
 }
