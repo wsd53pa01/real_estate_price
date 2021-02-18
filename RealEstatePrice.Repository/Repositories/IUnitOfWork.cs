@@ -9,6 +9,8 @@ namespace RealEstatePrice.Repository.Repositories
     {
         IGenericRepository<Users> UsersRepository { get; }
 
+        IGenericRepository<Prices> PricesRepository { get; }
+
         /// <summary>
         ///     Database Connection
         /// </summary>
