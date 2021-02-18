@@ -41,7 +41,7 @@ namespace RealEstatePrice.Service.Services
             using (IUnitOfWork uow = _unitOfWorkManager.Begin())
             {
                 Optionals optional = new Optionals();
-                optional.PriceID = request.PriceID;
+                optional.PriceID = request.PriceId;
                 optional.Remark = request.Remark;
                 optional.Tag = request.Tag;
                 uow.BeginTransaction();

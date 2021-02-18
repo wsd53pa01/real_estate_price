@@ -17,5 +17,11 @@ namespace RealEstatePrice.Service.Interfaces
         /// 取得不動產實價
         /// </summary>
         Task<Response<List<RealEstatePriceResponse>>> GetRealEstatePrice(RealEstatePriceRequest request);
+
+        /// <summary>
+        /// 驗證 PriceId
+        /// </summary>
+        /// <param name="priceId">price's table id</param>
+        bool PriceIdValidate(int priceId);
     }
 }

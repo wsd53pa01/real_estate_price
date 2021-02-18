@@ -201,5 +201,18 @@ namespace RealEstatePrice.Service.Services
                 return new Response<List<RealEstatePriceResponse>>(response, "success");
             }
         }
+
+        /// <summary>
+        /// 驗證 PriceId
+        /// </summary>
+        /// <param name="priceId">price's table id</param>
+        public bool PriceIdValidate(int priceId)
+        {
+            using (IUnitOfWork uow = _unitOfWorkManager.Begin())
+            {
+                Prices price = uow.PricesRepository.Get(priceId);
+                return price != null;
+            }
+        }
     }
 }
