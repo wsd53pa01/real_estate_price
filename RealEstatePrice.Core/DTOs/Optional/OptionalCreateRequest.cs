@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using RealEstatePrice.Core.Validations;
 
 namespace RealEstatePrice.Core.DTOs.Optional
 {
     public class OptionalCreateRequest
     {
         [Required]
-        public int PriceID { get; set; }
+        [PriceIdValidation]
+        public int PriceId { get; set; }
         
         /// <summary>
         /// 資料標籤
